@@ -58,3 +58,6 @@ spec:
               #cloud-config
               password: ripsaw
               chpasswd: { expire: False }
+              runcmd:
+               - sed -i -e "s/PasswordAuthentication.*/PasswordAuthentication yes/" /etc/ssh/sshd_config
+               - systemctl restart sshd
