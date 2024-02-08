@@ -29,7 +29,7 @@ spec:
             - name: datadisk
               disk:
                 bus: virtio
-                serial: data
+              serial: data
           interfaces:
             - name: default
               masquerade: {}
