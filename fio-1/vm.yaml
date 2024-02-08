@@ -65,9 +65,6 @@ spec:
               #cloud-config
               password: ripsaw
               chpasswd: { expire: False }
-              bootcmd:
-                - "mkdir -p /data || true"
-                - "[ -e /dev/disk/by-id/*data ] && disk=$(shopt -s nullglob; basename /dev/disk/by-id/*data) && mkfs.ext4 /dev/disk/by-id/$disk && mount /dev/disk/by-id/$disk /data"
               runcmd:
                 - sed -i -e "s/PasswordAuthentication.*/PasswordAuthentication yes/" /etc/ssh/sshd_config
                 - systemctl restart sshd
