@@ -4,4 +4,5 @@ kind: VolumeImportSource
 metadata:
   name: fio-blank
 spec:
-  source: {}
+  source:
+    blank: {}
