@@ -26,6 +26,10 @@ spec:
                 bus: virtio
             - name: cloudinit
               disk: {}
+            - name: datadisk
+              disk:
+                bus: virtio
+                serial: data
           interfaces:
             - name: default
               masquerade: {}
@@ -52,12 +56,24 @@ spec:
         - name: rootdisk
           persistentVolumeClaim:
             claimName: fio-vm-pvc
+        - name: datadisk
+          persistentVolumeClaim:
+            claimName: fio-data-pvc
         - name: cloudinit
           cloudInitNoCloud:
             userData: |-
               #cloud-config
               password: ripsaw
               chpasswd: { expire: False }
+              bootcmd:
+                - "mkdir -p /data || true"
+                - "[ -e /dev/disk/by-id/*data ] && disk=$(shopt -s nullglob; basename /dev/disk/by-id/*data) && mkfs.ext4 /dev/disk/by-id/$disk && mount /dev/disk/by-id/$disk /data"
               runcmd:
-               - sed -i -e "s/PasswordAuthentication.*/PasswordAuthentication yes/" /etc/ssh/sshd_config
-               - systemctl restart sshd
+                - sed -i -e "s/PasswordAuthentication.*/PasswordAuthentication yes/" /etc/ssh/sshd_config
+                - systemctl restart sshd
+                - dnf install -y podman
+                - img=`podman create quay.io/cloud-bulldozer/fio:latest`
+                - fs=`podman mount $img`
+                - mkdir -p $fs/data || true
+                - mount -o bind /data $fs/data
+                - chroot $fs bash -c 'cd /data; fio --version > fio.version.txt'
