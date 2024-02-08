@@ -72,8 +72,3 @@ spec:
                 - sed -i -e "s/PasswordAuthentication.*/PasswordAuthentication yes/" /etc/ssh/sshd_config
                 - systemctl restart sshd
                 - dnf install -y podman
-                - img=`podman create quay.io/cloud-bulldozer/fio:latest`
-                - fs=`podman mount $img`
-                - mkdir -p $fs/data || true
-                - mount -o bind /data $fs/data
-                - chroot $fs bash -c 'cd /data; fio --version > fio.version.txt'
