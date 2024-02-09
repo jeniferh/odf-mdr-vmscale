@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: data-1-pvc
+  name: data-2-pvc
 spec:
   dataSourceRef:
     apiGroup: cdi.kubevirt.io
