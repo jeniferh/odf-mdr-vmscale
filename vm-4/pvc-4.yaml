@@ -7,7 +7,7 @@ spec:
   dataSourceRef:
     apiGroup: cdi.kubevirt.io
     kind: VolumeImportSource
-    name: vm-source
+    name: vm-4-source
   accessModes:
     - ReadWriteMany
   resources:

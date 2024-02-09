@@ -2,7 +2,7 @@
 apiVersion: cdi.kubevirt.io/v1beta1
 kind: VolumeImportSource
 metadata:
-  name: vm-source
+  name: vm-3-source
 spec:
   source:
     registry:

@@ -1,0 +1,10 @@
+---
+apiVersion: cdi.kubevirt.io/v1beta1
+kind: VolumeImportSource
+metadata:
+  name: vm-1-source
+spec:
+  source:
+    registry:
+      # benchmark-operator image
+      url: "docker://quay.io/kubevirt/fedora-container-disk-images:latest"
