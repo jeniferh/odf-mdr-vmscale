@@ -1,11 +1,17 @@
 ---
 resources:
-  - source.yaml
+  - source-1.yaml
+  - source-2.yaml
+  - source-3.yaml
+  - source-4.yaml
   - pvc-1.yaml
   - pvc-2.yaml
   - pvc-3.yaml
   - pvc-4.yaml
-  - source-data.yaml
+  - source-data-1.yaml
+  - source-data-2.yaml
+  - source-data-3.yaml
+  - source-data-4.yaml
   - pvc-data-1.yaml
   - pvc-data-2.yaml
   - pvc-data-3.yaml
